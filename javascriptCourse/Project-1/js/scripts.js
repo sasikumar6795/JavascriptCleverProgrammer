@@ -16,7 +16,7 @@ function reset()
     document.getElementById('ageinDays').remove();
 }
 
-
+//Challenge -2
 function generateCat() 
 {
     var img =document.createElement('img');
@@ -25,3 +25,8 @@ function generateCat()
     div.appendChild(img);
 }
 
+//challenge -3
+
+function rpsGame(yourChoice) {
+    console.log(yourChoice);
+}
