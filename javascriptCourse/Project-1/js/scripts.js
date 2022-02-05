@@ -29,4 +29,89 @@ function generateCat()
 
 function rpsGame(yourChoice) {
     console.log(yourChoice);
+    var humanChoice, botChoice;
+
+    humanChoice=yourChoice.id;
+    // number= randomRPS();
+    // botChoice=numberToChoice(number);
+    botChoice=numberToChoice(randomRPS());
+    console.log('botChoice',botChoice);
+
+
+    results= decideWinner(humanChoice, botChoice)  //[0,1] bot won [0.5,0.5] draw [1,0] human won
+    console.log('results', results);
+
+
+    message=finalMessage(results); // {'message' : 'You won' , 'color': 'green'}
+    console.log('Message', message);
+
+    rpsFrontEnd(humanChoice, botChoice, message);
+
+}
+
+function randomRPS()
+{
+    return Math.floor(Math.random() *3);
+}
+
+function numberToChoice(number)
+{
+    //access array index 0,1,2 --via number
+    return ['Paper', 'Scissors', 'Rock'][number];
+}
+
+
+function decideWinner(humanChoice, botChoice)
+{
+
+    //storing in a database for multiple if else condition
+    var rpsDataBase= {
+        'Rock' : {
+            'Scissors' : 1,
+            'Rock': 0.5,
+            'Paper':0
+        },
+        'Scissors' : {
+            'Scissors' : 0.5,
+            'Rock': 0,
+            'Paper':1
+        },
+        'Paper' : {
+            'Scissors' : 0,
+            'Rock': 1,
+            'Paper':0.5
+        }
+    }
+
+    var yourScore= rpsDataBase[humanChoice][botChoice];
+    var botScore=rpsDataBase[botChoice][humanChoice];
+    return [yourScore,botScore];
+}
+
+
+function finalMessage ([yourScore, botScore]){
+
+   if(yourScore===0 && botScore===1 )
+   {
+       return {
+           'message' : 'You Lost',
+           'color' : 'red'
+       }
+   }
+   else if (yourScore===1  && botScore===0){
+    return {
+        'message' : 'You won ',
+        'color' : 'Green'
+    }
+   }
+   else{
+    return {
+        'message' : 'Draw',
+        'color' : 'Yellow'
+    }
+   }
+}
+
+function rpsFrontEnd(humanChoice, botChoice, message) {
+    
 }
