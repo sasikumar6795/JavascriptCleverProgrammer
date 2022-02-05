@@ -51,6 +51,7 @@ function rpsGame(yourChoice) {
 
 function randomRPS()
 {
+    //random numbers will be picked from o,1,2
     return Math.floor(Math.random() *3);
 }
 
@@ -113,5 +114,5 @@ function finalMessage ([yourScore, botScore]){
 }
 
 function rpsFrontEnd(humanChoice, botChoice, message) {
-    
+
 }
