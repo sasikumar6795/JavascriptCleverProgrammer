@@ -140,3 +140,17 @@ function rpsFrontEnd(humanChoice, botChoice, message) {
    
 
 }
+
+//Challenge -4 Change color of Buttons
+
+var allColorButtons =  document.getElementsByTagName('button');
+
+console.log(allColorButtons);
+
+var allButtons=[];
+for(let i=0;i<allColorButtons.length;i++)
+{
+    allButtons.push(allColorButtons[i]);
+}
+
+console.log(allButtons);
