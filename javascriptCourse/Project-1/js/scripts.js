@@ -150,7 +150,75 @@ console.log(allColorButtons);
 var allButtons=[];
 for(let i=0;i<allColorButtons.length;i++)
 {
-    allButtons.push(allColorButtons[i]);
+    allButtons.push(allColorButtons[i].classList[1]);
 }
 
 console.log(allButtons);
+
+function buttonColorChange(colorSelected)
+{
+    console.log("colorSelected",colorSelected.value);
+    if(colorSelected.value==='red')
+    {
+        changeButtonsToRed();
+    }
+    else if(colorSelected.value==='yellow')
+    {
+        changeButtonsToYellow();
+    }
+    else if(colorSelected.value==='green')
+    {
+        changeButtonsToGreen();
+    }
+    else if(colorSelected.value==='reset')
+    {
+        changeButtonsToOriginal();
+    }
+    else{
+        changeButtonsToRandom();
+    }
+   
+}
+
+function changeButtonsToRed(){
+    for(let i=0;i<allColorButtons.length;i++)
+    {
+        allColorButtons[i].classList.remove(allColorButtons[i].classList[1]);
+        allColorButtons[i].classList.add('btn-danger');
+    }
+}
+
+
+function changeButtonsToYellow(){
+    for(let i=0;i<allColorButtons.length;i++)
+    {
+        allColorButtons[i].classList.remove(allColorButtons[i].classList[1]);
+        allColorButtons[i].classList.add('btn-warning');
+    }
+}
+
+function changeButtonsToGreen(){
+    for(let i=0;i<allColorButtons.length;i++)
+    {
+        allColorButtons[i].classList.remove(allColorButtons[i].classList[1]);
+        allColorButtons[i].classList.add('btn-success');
+    }
+}
+
+function changeButtonsToOriginal(){
+    for(let i=0;i<allColorButtons.length;i++)
+    {
+        allColorButtons[i].classList.remove(allColorButtons[i].classList[1]);
+        allColorButtons[i].classList.add(allButtons[i]);
+    }
+}
+
+function changeButtonsToRandom(){
+    let choices = ['btn-primary', 'btn-warning', 'btn-success', 'btn-danger'];
+    for(let i=0;i<allColorButtons.length;i++)
+    {
+        let randomNumber=Math.floor(Math.random() *4);
+        allColorButtons[i].classList.remove(allColorButtons[i].classList[1]);
+        allColorButtons[i].classList.add(choices[randomNumber]);
+    }
+}
