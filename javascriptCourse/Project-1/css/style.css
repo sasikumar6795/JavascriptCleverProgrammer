@@ -5,7 +5,8 @@
     text-align: center;
 }
 
-.flex-box-container-1 , .flex-box-rps, .flex-box-pick-color{
+.flex-box-container-1 , .flex-box-rps, .flex-box-pick-color, .flex-blackjack-row-1,
+.flex-blackjack-row-2, .flex-blackjack-row-3{
     border: 1px solid black;
     display: flex;
     padding: 10px;
