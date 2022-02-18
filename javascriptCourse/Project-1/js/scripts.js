@@ -222,3 +222,31 @@ function changeButtonsToRandom(){
         allColorButtons[i].classList.add(choices[randomNumber]);
     }
 }
+
+//challenge-5 BlackJack
+
+let blackJackGame = {
+    'you' : {
+        'scoreSpan' : '#your-blackjack-result',
+        'div': '#your-box',
+        'score': 0
+    },
+    'dealer' : {
+        'scoreSpan' : '#dealer-blackjack-result',
+        'div': '#dealer-box',
+        'score': 0
+    },
+
+};
+
+const YOU=blackJackGame['you'];
+const DEALER=blackJackGame['dealer'];
+
+document.querySelector('#blackjack-hit-button').addEventListener('click',blackJackHit);
+
+function blackJackHit()
+{
+    let cardImage=document.createElement('img');
+    cardImage.src='./images/Q.png';
+    document.querySelector(YOU['div']).appendChild(cardImage);
+}
