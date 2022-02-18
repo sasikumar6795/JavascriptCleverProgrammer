@@ -242,11 +242,20 @@ let blackJackGame = {
 const YOU=blackJackGame['you'];
 const DEALER=blackJackGame['dealer'];
 
+const hitSound= new Audio('./sounds/swish.m4a');
+
 document.querySelector('#blackjack-hit-button').addEventListener('click',blackJackHit);
 
 function blackJackHit()
 {
+    showCard();
+}
+
+function showCard()
+{
     let cardImage=document.createElement('img');
     cardImage.src='./images/Q.png';
     document.querySelector(YOU['div']).appendChild(cardImage);
+
+    hitSound.play();
 }
