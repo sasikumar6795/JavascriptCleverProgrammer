@@ -1,3 +1,24 @@
+const betterFunction = doSomeMagic(getData, 300);
+
+
+function doSomeMagic(getData,delimiter) {
+    let timer;
+    return function () {
+        clearTimeout(timer);
+        timer= setTimeout(()=> {
+            getData();
+        },delimiter)
+
+    }
+}
+
+let counter =0;
+function getData () 
+{
+    console.log("Fetching the api", counter++);
+}
+
+
 //challenge 1
 
 function ageInDays()
