@@ -257,19 +257,8 @@ let blackJackGame = {
         'div': '#dealer-box',
         'score': 0
     },
-    'card' :['2','3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        'K',
-        'Q',
-        'J',
-        'A',
-    ],
+    'card' :['2','3','4','5','6','7','8','9','10','K','Q','J','A'],
+    'cardsMap' : {'2' : 2 , '3':3, '4':4, '5':5, '6':6, '7':7,'8':8,'9':9,'10':10,'K':10,'Q':10,'J':10,'A':[1,11]},
 
 };
 
@@ -284,17 +273,62 @@ document.querySelector('#blackjack-deal-button').addEventListener('click',blackJ
 function blackJackHit()
 {
     let card =randomCard();
-    console.log(card);
+   // console.log(card);
     showCard(card,YOU);
+    updateScore(card,YOU);
+   // console.log(YOU['score']);
+   showScore(YOU);
+}
+
+function updateScore(card,activePlayer)
+{
+    if(activePlayer['score'] <21)
+    {
+        if(card==='A')
+        {
+            //if adding 11 keeps below 21 then do the below
+            if(activePlayer['score'] +blackJackGame['cardsMap'][card][1] <=21 )
+            {
+                activePlayer['score']+=blackJackGame['cardsMap'][card][1];
+            }
+            else{
+                activePlayer['score']+=blackJackGame['cardsMap'][card][0];
+            }
+       
+        }else{
+            activePlayer['score']+=blackJackGame['cardsMap'][card];
+        }
+    }
+  
+
+    
+    
+}
+
+function showScore(activePlayer)
+{
+    if(activePlayer['score'] >21)
+    {
+        document.querySelector(activePlayer['scoreSpan']).textContent='!BUST';
+        document.querySelector(activePlayer['scoreSpan']).style.color='red';
+    }
+    else{
+        document.querySelector(activePlayer['scoreSpan']).textContent =activePlayer['score'];
+    }
+    
 }
 
 function showCard(card,activePlayer)
 {
-    let cardImage=document.createElement('img');
-    cardImage.src=`./images/${card}.png`;
-    document.querySelector(activePlayer['div']).appendChild(cardImage);
-
-    hitSound.play();
+    if(activePlayer['score'] <=21)
+    {
+        let cardImage=document.createElement('img');
+        cardImage.src=`./images/${card}.png`;
+        document.querySelector(activePlayer['div']).appendChild(cardImage);
+    
+        hitSound.play();
+    }
+   
 }
 
 function blackJackDeal()
